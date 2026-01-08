@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ndrapedia.id - Panel SMM Terpercaya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary: #165DFF;
+            --secondary: #0D47A1;
+            --light: #F5F7FA;
+            --dark: #1E293B;
+            --success: #2ECC71;
+            --accent: #FF9800;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 0 1rem;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-tab:hover {
+            color: var(--secondary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .service-section {
+            display: none;
+        }
+
+        .service-section.active {
+            display: block;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .section-desc {
+            color: #64748B;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-bottom: 1rem;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--success);
+            margin-bottom: 1.2rem;
+        }
+
+        .order-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .order-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .order-form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            max-width: 500px;
+            margin: 2rem auto;
+            display: none;
+            border-top: 3px solid var(--accent);
+        }
+
+        .order-form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .close-btn {
+            background-color: #E74C3C;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #C0392B;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-tab {
+                padding: 1rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ndrapedia.id</div>
+        <div class="tagline">Panel SMM WA, Instagram & Saluran No. 1 di Indonesia</div>
+    </header>
+
+    <div class="nav-tabs">
+        <div class="nav-tab active" data-target="wa-section">
+            <span>💬 WhatsApp</span>
+        </div>
+        <div class="nav-tab" data-target="ig-section">
+            <span>📷 Instagram</span>
+        </div>
+        <div class="nav-tab" data-target="channel-section">
+            <span>📢 Saluran</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Bagian Layanan WhatsApp -->
+        <div class="service-section active" id="wa-section">
+            <div class="section-title">
+                <span class="section-icon">💬</span>
+                <h2>Layanan WhatsApp</h2>
+            </div>
+            <p class="section-desc">Layanan resmi untuk meningkatkan interaksi dan jangkauan bisnis Anda di WhatsApp</p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">📨</div>
+                    <h3>Pesan Broadcast WA</h3>
+                    <p>Pesan promosi ke kontak target aktif dan sesuai niche</p>
+                    <div class="price-tag">Rp 20.000 / 100 Kontak</div>
+                    <button class="order-btn" onclick="openOrderForm('Pesan Broadcast WA')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Anggota Grup WA</h3>
+                    <p>Anggota aktif yang berpartisipasi dalam diskusi grup</p>
+                    <div class="price-tag">Rp 15.000 / 50 Anggota</div>
+                    <button class="order-btn" onclick="openOrderForm('Anggota Grup WA')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⭐</div>
+                    <h3>Rating & Ulasan WA</h3>
+                    <p>Ulasan positif untuk meningkatkan kredibilitas akun bisnis</p>
+                    <div class="price-tag">Rp 10.000 / 10 Ulasan</div>
+                    <button class="order-btn" onclick="openOrderForm('Rating & Ulasan WA')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Analisis Akun WA</h3>
+                    <p>Laporan analisis performa akun bisnis WhatsApp Anda</p>
+                    <div class="price-tag">Rp 35.000 / Bulan</div>
+                    <button class="order-btn" onclick="openOrderForm('Analisis Akun WA')">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian Layanan Instagram -->
+        <div class="service-section" id="ig-section">
+            <div class="section-title">
+                <span class="section-icon">📷</span>
+                <h2>Layanan Instagram</h2>
+            </div>
+            <p class="section-desc">Pertumbuhan akun dan konten Instagram yang sesuai kebijakan platform</p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Like Konten IG</h3>
+                    <p>Like dari pengguna aktif dengan minat sesuai konten Anda</p>
+                    <div class="price-tag">Rp 12.000 / 1000 Like</div>
+                    <button class="order-btn" onclick="openOrderForm('Like Konten IG')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👤</div>
+                    <h3>Follower IG Aktif</h3>
+                    <p>Follower berkualitas yang tidak akan berhenti mengikuti</p>
+                    <div class="price-tag">Rp 22.000 / 1000 Follower</div>
+                    <button class="order-btn" onclick="openOrderForm('Follower IG Aktif')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Komentar Konten IG</h3>
+                    <p>Komentar relevan dan bermakna untuk meningkatkan engagement</p>
+                    <div class="price-tag">Rp 18.000 / 100 Komentar</div>
+                    <button class="order-btn" onclick="openOrderForm('Komentar Konten IG')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📌</div>
+                    <h3>Simpan Konten IG</h3>
+                    <p>Penambahan jumlah simpan untuk meningkatkan visibilitas konten</p>
+                    <div class="price-tag">Rp 15.000 / 1000 Simpan</div>
+                    <button class="order-btn" onclick="openOrderForm('Simpan Konten IG')">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian Layanan Saluran -->
+        <div class="service-section" id="channel-section">
+            <div class="section-title">
+                <span class="section-icon">📢</span>
+                <h2>Layanan Saluran</h2>
+            </div>
+            <p class="section-desc">Dukungan pertumbuhan untuk saluran YouTube dan Telegram yang sah</p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">📺</div>
+                    <h3>Subscriber YouTube</h3>
+                    <p>Subscriber aktif dengan minat sesuai topik saluran Anda</p>
+                    <div class="price-tag">Rp 28.000 / 1000 Subscriber</div>
+                    <button class="order-btn" onclick="openOrderForm('Subscriber YouTube')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>View Video YouTube</h3>
+                    <p>View dari penonton target yang menonton hingga akhir video</p>
+                    <div class="price-tag">Rp 8.000 / 1000 View</div>
+                    <button class="order-btn" onclick="openOrderForm('View Video YouTube')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>Anggota Saluran Telegram</h3>
+                    <p>Anggota aktif yang mengikuti dan berinteraksi di saluran Anda</p>
+                    <div class="price-tag">Rp 16.000 / 1000 Anggota</div>
+                    <button class="order-btn" onclick="openOrderForm('Anggota Saluran Telegram')">Pesan Sekarang</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👍</div>
+                    <h3>Reaksi Pesan Telegram</h3>
+                    <p>Reaksi positif untuk meningkatkan interaksi di saluran</p>
+                    <div class="price-tag">Rp 10.000 / 100 Reaksi</div>
+                    <button class="order-btn" onclick="openOrderForm('Reaksi Pesan Telegram')">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulir Pemesanan -->
+        <div class="order-form-container" id="order-form">
+            <button class="close-btn" onclick="closeOrderForm()">Tutup Formulir</button>
+            <h2>Formulir Pemesanan - ndrapedia.id</h2>
+            <form>
+                <div class="form-group">
+                    <label for="selected-service">Layanan yang Dipilih</label>
+                    <input type="text" id="selected-service" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="order-quantity">Jumlah Pesanan</label>
+                    <input type="number" id="order-quantity" min="1" placeholder="Contoh: 500 atau 1000" required>
+                </div>
+                <div class="form-group">
+                    <label for="order-link">Link Akun/Konten/Saluran</label>
+                    <input type="url" id="order-link" placeholder="Masukkan link yang valid" required>
+                </div>
+                <div class="form-group">
+                    <label for="order-contact">Nomor Kontak WA</label>
+                    <input type="text" id="order-contact" placeholder="Contoh: 083894407409" required>
+                </div>
+                <button type="submit" class="order-btn">Kirim Pesanan ke ndrapedia.id
